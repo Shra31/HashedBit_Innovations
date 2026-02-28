@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JS Assignment 4 - DOM</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    padding: 20px 50px;
+    text-align: center;
+}
+
+/* CONTAINER */
+.container {
+    padding: 40px 60px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #1e3c72;
+}
+
+/* BUTTON */
+button {
+    padding: 8px 16px;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #1e3c72;
+}
+
+/* Created Div Style */
+.createdDiv {
+    margin-top: 12px;
+    padding: 10px;
+    background: #2a5298;
+    color: white;
+    border-radius: 6px;
+}
+
+/* DARK MODE */
+.dark {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+.dark .card {
+    background: #1f1f1f;
+}
+
+.dark header {
+    background: #000;
+}
+
+/* INPUT */
+input[type="color"] {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>JS DOM Assignment 4</h1>
+    <p>Dark Theme | Div Creation | Hide/Show | Dynamic CSS</p>
+</header>
+
+<div class="container">
+
+    <!-- DARK THEME -->
+    <div class="card">
+        <h2>1. Dark Theme Toggle</h2>
+        <p>Click the button to switch between light and dark mode.</p>
+        <button id="themeBtn">Enable Dark Mode</button>
+    </div>
+
+    <!-- DIV CREATION -->
+    <div class="card">
+        <h2>2. Dynamic Div Creation</h2>
+        <p>Click to create styled div elements dynamically.</p>
+        <button id="createDiv">Create New Div</button>
+        <div id="divContainer"></div>
+    </div>
+
+    <!-- HIDE SHOW -->
+    <div class="card">
+        <h2>3. Hide / Show Paragraph</h2>
+        <p id="togglePara">This paragraph can be hidden or shown using DOM manipulation.</p>
+        <button id="toggleBtn">Hide Paragraph</button>
+    </div>
+
+    <!-- DYNAMIC CSS -->
+    <div class="card">
+    <h2>4. Dynamic CSS Styling</h2>
+    <p id="stylePara">Change my appearance dynamically using DOM!</p>
+
+    <br>
+
+    <label>Text Color:</label>
+    <input type="color" id="textColor" value="#000000">
+
+    <label>Background Color:</label>
+    <input type="color" id="bgColor" value="#ffffff">
+
+    <br><br>
+
+    <label>Font Size:</label>
+    <input type="range" id="fontSize" min="14" max="40" value="16">
+    <span id="fontValue">16px</span>
+
+    <br><br>
+
+    <button id="applyStyle">Apply Styles</button>
+    <button id="resetStyle" style="background:#888;">Reset</button>
+</div>
+
+</div>
+
+<script>
+
+// ===== DARK MODE =====
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+        themeBtn.innerText = "Disable Dark Mode";
+    } else {
+        themeBtn.innerText = "Enable Dark Mode";
+    }
+});
+
+
+// ===== DIV CREATION =====
+const createBtn = document.getElementById("createDiv");
+const container = document.getElementById("divContainer");
+
+createBtn.addEventListener("click", () => {
+    const newDiv = document.createElement("div");
+    newDiv.className = "createdDiv";
+    newDiv.innerText = "New Div Created at " + new Date().toLocaleTimeString();
+    container.appendChild(newDiv);
+});
+
+
+// ===== HIDE SHOW =====
+const para = document.getElementById("togglePara");
+const toggleBtn = document.getElementById("toggleBtn");
+
+toggleBtn.addEventListener("click", () => {
+    if(para.style.display === "none"){
+        para.style.display = "block";
+        toggleBtn.innerText = "Hide Paragraph";
+    } else {
+        para.style.display = "none";
+        toggleBtn.innerText = "Show Paragraph";
+    }
+});
+
+
+// ===== DYNAMIC CSS =====
+// ===== IMPROVED DYNAMIC CSS =====
+const textColor = document.getElementById("textColor");
+const bgColor = document.getElementById("bgColor");
+const fontSize = document.getElementById("fontSize");
+const fontValue = document.getElementById("fontValue");
+const applyStyle = document.getElementById("applyStyle");
+const resetStyle = document.getElementById("resetStyle");
+const stylePara = document.getElementById("stylePara");
+
+// Update font size label live
+fontSize.addEventListener("input", () => {
+    fontValue.innerText = fontSize.value + "px";
+});
+
+// Apply styles
+applyStyle.addEventListener("click", () => {
+    stylePara.style.color = textColor.value;
+    stylePara.style.backgroundColor = bgColor.value;
+    stylePara.style.fontSize = fontSize.value + "px";
+    stylePara.style.padding = "10px";
+    stylePara.style.borderRadius = "6px";
+    stylePara.style.border = "2px solid #2a5298";
+});
+
+// Reset styles
+resetStyle.addEventListener("click", () => {
+    stylePara.style = "";
+    textColor.value = "#000000";
+    bgColor.value = "#ffffff";
+    fontSize.value = 16;
+    fontValue.innerText = "16px";
+});
+
+</script>
+
+</body>
+</html>
