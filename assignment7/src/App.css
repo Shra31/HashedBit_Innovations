@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main-container {
+  min-height: 100vh;
+
+  /* SINGLE IMAGE */
+  background-image: url("./assets/cricket-bg.jpg");
+  background-size: cover;        /* fills screen */
+  background-position: center;   /* center image */
+  background-repeat: no-repeat;  /* prevents repeating */
+}
+
+.overlay {
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+}
+
+h1 {
+  text-align: center;
+  color: #ffd700;
+  margin-bottom: 30px;
+}
+
+.table-card {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.ipl-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: white;
+}
+
+.ipl-table th,
+.ipl-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.ipl-table th {
+  background-color: #1b5e20;
+}
+
+.ipl-table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.05);
+}
