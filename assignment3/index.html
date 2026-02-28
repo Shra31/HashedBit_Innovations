@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Assignment 3</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background-color: #f4f6f9;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h3 {
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>JS Assignment 3 - Output</h2>
+<div id="output"></div>
+
+<script>
+
+let output = document.getElementById("output");
+
+function display(question, input, result) {
+    output.innerHTML += `
+        <div class="box">
+            <h3>${question}</h3>
+            <p><strong>Input:</strong> ${input}</p>
+            <p><strong>Output:</strong> ${result}</p>
+        </div>
+    `;
+}
+
+// Q1
+let states = ["Andhra Pradesh","Bihar","Odisha","Uttar Pradesh","Maharashtra","Karnataka","Assam","Tamil Nadu"];
+let filteredStates = states.filter(state =>
+    !["A","E","I","O","U"].includes(state[0].toUpperCase())
+);
+display(
+    "Q1: Remove states starting with vowels",
+    states.join(", "),
+    filteredStates.join(", ")
+);
+
+// Q2
+let str = "I love my India";
+let reversedSentence = str.split(" ").reverse().join(" ");
+display(
+    "Q2: Reverse the sentence",
+    str,
+    reversedSentence
+);
+
+// Q3
+let arr = "INDIA".split("");
+let original = arr.join("");
+arr.splice(3, 0, "O","N","E","S");
+display(
+    "Q3: Convert INDIA to INDONESIA using splice",
+    original,
+    arr.join("")
+);
+
+// Q4
+function countVC(text) {
+    let vowels = "aeiouAEIOU";
+    let v = 0, c = 0;
+
+    for (let ch of text) {
+        if (/[a-zA-Z]/.test(ch)) {
+            vowels.includes(ch) ? v++ : c++;
+        }
+    }
+    return `Vowels: ${v}, Consonants: ${c}`;
+}
+let sample = "JavaScript is powerful language";
+display(
+    "Q4: Count vowels and consonants",
+    sample,
+    countVC(sample)
+);
+
+// Q5
+function correctfn(string, wrong, correct) {
+    return string.replace(wrong, correct);
+}
+let wrongSentence = "I has a pen";
+display(
+    "Q5: Replace wrong word",
+    wrongSentence,
+    correctfn(wrongSentence, "has", "have")
+);
+
+// Q6
+let inputArr = [1,2,3,9,10,7,5,4,3];
+let greaterThanFive = inputArr.filter(n => n > 5);
+display(
+    "Q6: Filter numbers greater than 5",
+    inputArr.join(", "),
+    greaterThanFive.join(", ")
+);
+
+// Q7
+const students = [
+{ name: "Ram", scores: [80,70,60] },
+{ name: "Mohan", scores: [80,70,90] },
+{ name: "Sai", scores: [60,70,80] },
+{ name: "Hemang", scores: [90,90,80,80] }
+];
+
+let averages = students.map(s => {
+    let total = s.scores.reduce((a,b) => a+b, 0);
+    return `${s.name}: ${total/s.scores.length}`;
+});
+display(
+    "Q7: Calculate average using map & reduce",
+    "Student scores given in code",
+    averages.join(" | ")
+);
+
+// Q8
+function repeatedSum(num) {
+    while (num >= 10) {
+        num = num.toString().split("").reduce((a,b) => a + Number(b), 0);
+    }
+    return num;
+}
+display(
+    "Q8: Repeated digit sum",
+    "456",
+    repeatedSum(456)
+);
+
+// Q9
+function wordCount(text) {
+    return text.trim().split(/\s+/).length;
+}
+let paragraph = "JavaScript is very powerful and easy to learn.";
+display(
+    "Q9: Count words in paragraph",
+    paragraph,
+    wordCount(paragraph)
+);
+
+// Q10
+function reverseString(text) {
+    return text.split("").reverse().join("");
+}
+display(
+    "Q10: Reverse string",
+    "Hello",
+    reverseString("Hello")
+);
+
+// Q11
+let studentData = [
+    { name:"student1", subject1:44, subject2:56, subject3:87, subject4:97, subject5:37 },
+    { name:"student2", subject1:44, subject2:56, subject3:87, subject4:97, subject5:37 },
+    { name:"student3", subject1:44, subject2:56, subject3:87, subject4:97, subject5:37 }
+];
+
+let averages2 = studentData.map(s => {
+    let scores = Object.values(s).filter(v => typeof v === "number");
+    let total = scores.reduce((a,b) => a+b, 0);
+    return `${s.name}: ${total/scores.length}`;
+});
+display(
+    "Q11: Find average of each student",
+    "Marks given in object",
+    averages2.join(" | ")
+);
+
+</script>
+
+</body>
+</html>
