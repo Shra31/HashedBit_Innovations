@@ -1,0 +1,110 @@
+// ===============================
+// 1. Display even numbers from 1 to 100
+// ===============================
+
+console.log("Even numbers from 1 to 100:");
+
+for (let i = 1; i <= 100; i++) {
+    if (i % 2 === 0) {
+        console.log(i);
+    }
+}
+
+
+// ===============================
+// 2. Calculator Function using Switch
+// ===============================
+
+function calculate(num1, num2, operator) {
+
+    switch (operator) {
+        case "+":
+            return num1 + num2;
+
+        case "-":
+            return num1 - num2;
+
+        case "*":
+            return num1 * num2;
+
+        case "/":
+            if (num2 === 0) {
+                return "Cannot divide by zero";
+            }
+            return num1 / num2;
+
+        default:
+            return "Invalid Operator";
+    }
+}
+
+console.log("Addition:", calculate(10, 5, "+"));
+console.log("Subtraction:", calculate(10, 5, "-"));
+console.log("Multiplication:", calculate(10, 5, "*"));
+console.log("Division:", calculate(10, 5, "/"));
+
+
+// ===============================
+// 3. findTax Function using Switch
+// ===============================
+
+function findTax(salary) {
+    let tax = 0;
+
+    switch (true) {
+
+        case (salary > 0 && salary <= 500000):
+            tax = 0;
+            break;
+
+        case (salary > 500000 && salary <= 1000000):
+            tax = salary * 0.10;
+            break;
+
+        case (salary > 1000000 && salary <= 1500000):
+            tax = salary * 0.20;
+            break;
+
+        case (salary > 1500000):
+            tax = salary * 0.30;
+            break;
+
+        default:
+            tax = "Invalid Salary";
+    }
+
+    return tax;
+}
+
+console.log("Tax on 400000:", findTax(400000));
+console.log("Tax on 800000:", findTax(800000));
+console.log("Tax on 1200000:", findTax(1200000));
+console.log("Tax on 2000000:", findTax(2000000));
+
+
+// ===============================
+// 4. Sum of Product of Corresponding Digits
+// ===============================
+
+function sumOfDigitProducts(n1, n2) {
+
+    let num1 = n1.toString();
+    let num2 = n2.toString();
+
+    // Make both numbers equal length
+    let maxLength = Math.max(num1.length, num2.length);
+
+    num1 = num1.padStart(maxLength, "0");
+    num2 = num2.padStart(maxLength, "0");
+
+    let sum = 0;
+
+    for (let i = 0; i < maxLength; i++) {
+        sum += Number(num1[i]) * Number(num2[i]);
+    }
+
+    return sum;
+}
+
+console.log("Digit Product Sum (6, 34):", sumOfDigitProducts(6, 34));
+console.log("Digit Product Sum (123, 456):", sumOfDigitProducts(123, 456));
