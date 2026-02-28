@@ -1,105 +1,141 @@
-/* Reset */
+/* GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* Header */
+/* BODY */
+body {
+    background-color: #f4f6f9;
+}
+
+/* HEADER */
 header {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222;
-    color: white;
-    padding: 15px 40px;
+    padding: 20px 60px;
+}
+
+.logo h1 {
+    font-size: 26px;
+    letter-spacing: 1px;
 }
 
 .social-links a {
     color: white;
-    margin-left: 15px;
     text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
 }
 
 .social-links a:hover {
     text-decoration: underline;
 }
 
-/* Navigation */
+/* NAVBAR */
 nav {
-    background-color: #444;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 nav ul {
-    display: flex;
     list-style: none;
-    padding: 10px 40px;
+    display: flex;
+    padding: 15px 60px;
 }
 
 nav ul li {
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
-    font-weight: bold;
+    color: #333;
+    font-weight: 600;
 }
 
 nav ul li a:hover {
-    color: #f4b400;
+    color: #2a5298;
 }
 
-/* Layout */
+/* LAYOUT */
 .container {
     display: flex;
-    padding: 20px 40px;
+    padding: 40px 60px;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
     width: 25%;
-    background-color: #f2f2f2;
-    padding: 20px;
-    margin-right: 20px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    margin-right: 30px;
 }
 
-.sidebar h3 {
+.sidebar h2 {
     margin-bottom: 15px;
+    color: #2a5298;
 }
 
 .sidebar ul {
-    margin-top: 10px;
+    margin-top: 15px;
     padding-left: 20px;
 }
 
-/* Main */
+/* MAIN CONTENT */
 main {
     width: 75%;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
-/* Cards */
+/* CARDS */
 .card {
-    width: 30%;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
+    background: white;
+    width: 32%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
 }
 
 .card img {
     width: 100%;
-    margin: 10px 0;
+    height: 180px;
+    object-fit: cover;
 }
 
-/* Footer */
+.card h3 {
+    margin: 15px;
+    color: #1e3c72;
+}
+
+.card p {
+    margin: 0 15px 20px 15px;
+    color: #555;
+}
+
+/* FOOTER */
 footer {
-    background-color: #222;
+    background-color: #1e3c72;
     color: white;
     text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
 }
