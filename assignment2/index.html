@@ -2,44 +2,95 @@
 <html>
 <head>
     <title>JS Assignment 2</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background-color: #f4f6f9;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h3 {
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 4px 0;
+        }
+    </style>
 </head>
 <body>
 
-<h2>JavaScript Assignment 2</h2>
-<p>Press F12 and open Console to see output.</p>
+<h2>JS Assignment 2 - Output</h2>
+<div id="output"></div>
 
 <script>
 
-// 1. Even numbers from 1 to 100
-console.log("Even numbers from 1 to 100:");
+let output = document.getElementById("output");
+
+function display(question, input, result) {
+    output.innerHTML += `
+        <div class="box">
+            <h3>${question}</h3>
+            <p><strong>Input:</strong> ${input}</p>
+            <p><strong>Output:</strong> ${result}</p>
+        </div>
+    `;
+}
+
+// ===============================
+// Q1: Even numbers from 1 to 100
+// ===============================
+
+let evenNumbers = [];
 for (let i = 1; i <= 100; i++) {
     if (i % 2 === 0) {
-        console.log(i);
+        evenNumbers.push(i);
     }
 }
+display(
+    "Q1: Display even numbers from 1 to 100",
+    "Range: 1 to 100",
+    evenNumbers.join(", ")
+);
 
-// 2. Calculator function
+
+// ===============================
+// Q2: Calculator using switch
+// ===============================
+
 function calculate(num1, num2, operator) {
     switch (operator) {
-        case "+":
-            return num1 + num2;
-        case "-":
-            return num1 - num2;
-        case "*":
-            return num1 * num2;
-        case "/":
-            return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
-        default:
-            return "Invalid operator";
+        case "+": return num1 + num2;
+        case "-": return num1 - num2;
+        case "*": return num1 * num2;
+        case "/": return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+        default: return "Invalid operator";
     }
 }
 
-console.log("Addition:", calculate(10, 5, "+"));
-console.log("Subtraction:", calculate(10, 5, "-"));
-console.log("Multiplication:", calculate(10, 5, "*"));
-console.log("Division:", calculate(10, 5, "/"));
+display(
+    "Q2: Calculator using switch",
+    "10 + 5",
+    calculate(10,5,"+")
+);
 
-// 3. Tax function
+display(
+    "Q2: Calculator using switch",
+    "10 * 5",
+    calculate(10,5,"*")
+);
+
+
+// ===============================
+// Q3: Tax calculation
+// ===============================
+
 function findTax(salary) {
     let tax = 0;
 
@@ -63,18 +114,22 @@ function findTax(salary) {
     return tax;
 }
 
-console.log("Tax on 400000:", findTax(400000));
-console.log("Tax on 800000:", findTax(800000));
-console.log("Tax on 1200000:", findTax(1200000));
-console.log("Tax on 2000000:", findTax(2000000));
+display(
+    "Q3: Tax Calculation",
+    "Salary: 800000",
+    "Tax: " + findTax(800000)
+);
 
-// 4. Sum of product of corresponding digits
+
+// ===============================
+// Q4: Sum of product of corresponding digits
+// ===============================
+
 function sumOfDigitProducts(n1, n2) {
     let num1 = n1.toString();
     let num2 = n2.toString();
 
     let maxLength = Math.max(num1.length, num2.length);
-
     num1 = num1.padStart(maxLength, "0");
     num2 = num2.padStart(maxLength, "0");
 
@@ -87,8 +142,11 @@ function sumOfDigitProducts(n1, n2) {
     return sum;
 }
 
-console.log("Digit Product Sum (6, 34):", sumOfDigitProducts(6, 34));
-console.log("Digit Product Sum (123, 456):", sumOfDigitProducts(123, 456));
+display(
+    "Q4: Sum of product of corresponding digits",
+    "n1 = 6, n2 = 34",
+    sumOfDigitProducts(6,34)
+);
 
 </script>
 
